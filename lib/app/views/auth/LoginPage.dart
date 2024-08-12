@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:stunting_app/app/config/ColorConfig.dart';
-import 'package:stunting_app/app/views/auth/RegisterPage.dart';
+import 'package:stunting_app/app/controllers/auth/LoginController.dart';
 import 'package:stunting_app/app/widgets/InputText.dart';
 import 'package:stunting_app/app/widgets/PrimaryButton.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  @override
   Widget build(BuildContext context) {
+    final LoginController loginController = LoginController();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -53,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 InputText(
                   hintText: "Email",
-                  controller: emailController,
+                  onChange: loginController.setEmail,
                 ),
                 const SizedBox(
                   height: 24,
@@ -61,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                 InputText(
                   hintText: "Password",
                   isPassword: true,
-                  controller: passwordController,
+                  onChange: loginController.setPassword,
                 ),
                 const SizedBox(
                   height: 10,
@@ -83,7 +78,9 @@ class _LoginPageState extends State<LoginPage> {
                   height: 10,
                 ),
                 PrimaryButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    loginController.login();
+                  },
                   text: "Login",
                 ),
                 const SizedBox(
@@ -100,10 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegisterPage()));
+                        Get.offNamed('/register');
                       },
                       child: const Text(
                         "Daftar",

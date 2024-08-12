@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:get/get.dart';
 import 'package:stunting_app/app/config/ColorConfig.dart';
+import 'package:stunting_app/app/controllers/auth/RegisterController.dart';
 import 'package:stunting_app/app/widgets/InputText.dart';
 import 'package:stunting_app/app/widgets/PrimaryButton.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
-
-class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-  @override
   Widget build(BuildContext context) {
+    final RegisterController registerController = RegisterController();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -57,14 +49,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 InputText(
                   hintText: "Nama Lengkap",
-                  controller: nameController,
+                  onChange: registerController.setName,
                 ),
                 const SizedBox(
                   height: 24,
                 ),
                 InputText(
                   hintText: "Email",
-                  controller: emailController,
+                  onChange: registerController.setEmail,
                 ),
                 const SizedBox(
                   height: 24,
@@ -72,7 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 InputText(
                   hintText: "Password",
                   isPassword: true,
-                  controller: passwordController,
+                  onChange: registerController.setPassword,
                 ),
                 const SizedBox(
                   height: 24,
@@ -80,13 +72,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 InputText(
                   hintText: "Konfirmasi Password",
                   isPassword: true,
-                  controller: confirmPasswordController,
+                  onChange: registerController.setConfirmPassword,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 PrimaryButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    registerController.register();
+                  },
                   text: "Buat Akun",
                 ),
                 const SizedBox(
@@ -103,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Get.offNamed('/login');
                       },
                       child: const Text(
                         "Masuk",

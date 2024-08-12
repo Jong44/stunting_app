@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stunting_app/app/views/auth/LoginPage.dart';
+import 'package:get/get.dart';
+import 'package:stunting_app/app/config/ColorConfig.dart';
+import 'package:stunting_app/app/routes/app_pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,14 +13,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      initialRoute: '/login',
+      getPages: AppPages.pages,
+      title: 'Stunting App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: ColorConfig.primaryColor,
+        fontFamily: 'PlusJakartaSans',
       ),
-      home: LoginPage(),
     );
   }
 }

@@ -4,12 +4,12 @@ import 'package:stunting_app/app/config/ColorConfig.dart';
 class InputText extends StatelessWidget {
   final String hintText;
   final bool isPassword;
-  final TextEditingController controller;
+  final onChange;
   const InputText({
     super.key,
     required this.hintText,
     this.isPassword = false,
-    required this.controller,
+    required this.onChange,
   });
 
   @override
@@ -23,7 +23,7 @@ class InputText extends StatelessWidget {
         style: TextStyle(
           fontSize: 14,
         ),
-        controller: controller,
+        onChanged: onChange,
         obscureText: isPassword,
         decoration: InputDecoration(
           border: InputBorder.none,

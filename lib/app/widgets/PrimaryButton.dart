@@ -3,12 +3,14 @@ import 'package:stunting_app/app/config/ColorConfig.dart';
 
 class PrimaryButton extends StatelessWidget {
   final Function()? onPressed;
-  final String text;
+  String text;
+  Widget child;
 
-  const PrimaryButton({
+  PrimaryButton({
     super.key,
     required this.onPressed,
-    required this.text,
+    this.text = "",
+    this.child = const Text(""),
   });
 
   @override
@@ -16,21 +18,22 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        minimumSize: Size(double.infinity, 48),
+        minimumSize: Size(double.infinity, 0),
         backgroundColor: ColorConfig.primaryColor,
         padding: const EdgeInsets.symmetric(vertical: 14),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-      ),
+      child: text == ""
+          ? child
+          : Text(
+              text,
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
     );
   }
 }
