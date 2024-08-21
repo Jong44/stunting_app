@@ -2,9 +2,12 @@ import 'package:get/get.dart';
 import 'package:stunting_app/app/bindings/auth/LoginBinding.dart';
 import 'package:stunting_app/app/bindings/auth/RegisterBinding.dart';
 import 'package:stunting_app/app/bindings/mainpage/MainBinding.dart';
+import 'package:stunting_app/app/bindings/menu/BookImunisasiBinding.dart';
+import 'package:stunting_app/app/controllers/menu/BookImunisasiController.dart';
 import 'package:stunting_app/app/views/auth/LoginPage.dart';
 import 'package:stunting_app/app/views/auth/RegisterPage.dart';
 import 'package:stunting_app/app/views/mainpage/MainPage.dart';
+import 'package:stunting_app/app/views/menu/BookImunisasiPage.dart';
 
 class AppPages {
   static final pages = [
@@ -25,6 +28,12 @@ class AppPages {
       page: () => const MainPage(),
       binding: IndexMainBinding(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: '/booking-vaksin',
+      page: () => const BookImunisasiPage(),
+      transition: Transition.fadeIn,
+      binding: BookImunisasiBinding(),
     ),
   ];
 }

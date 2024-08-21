@@ -5,11 +5,15 @@ class InputText extends StatelessWidget {
   final String hintText;
   final bool isPassword;
   final onChange;
+  final onClick;
+  final fontSize;
   const InputText({
     super.key,
     required this.hintText,
     this.isPassword = false,
     required this.onChange,
+    this.onClick,
+    this.fontSize = 14.0,
   });
 
   @override
@@ -20,8 +24,9 @@ class InputText extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: TextField(
+        onTap: onClick,
         style: TextStyle(
-          fontSize: 14,
+          fontSize: fontSize,
         ),
         onChanged: onChange,
         obscureText: isPassword,
