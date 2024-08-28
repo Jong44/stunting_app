@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
 
-class RegisterController extends GetxController {
+class RegisterDataController extends GetxController {
   var name = ''.obs;
   var email = ''.obs;
-  var password = ''.obs;
-  var confirmPassword = ''.obs;
+  var gender = 'Laki - Laki'.obs;
   var province = ''.obs;
   var kabupaten = ''.obs;
   var kecamatan = ''.obs;
@@ -17,12 +16,8 @@ class RegisterController extends GetxController {
     email.value = value;
   }
 
-  void setPassword(String value) {
-    password.value = value;
-  }
-
-  void setConfirmPassword(String value) {
-    confirmPassword.value = value;
+  void setGender(String value) {
+    gender.value = value;
   }
 
   void setProvince(String value) {
@@ -40,8 +35,7 @@ class RegisterController extends GetxController {
   void register() {
     print('Name: ${name.value}');
     print('Email: ${email.value}');
-    print('Password: ${password.value}');
-    print('Confirm Password: ${confirmPassword.value}');
-    Get.toNamed('/register-data');
+
+    Get.offNamed('/mainpage');
   }
 }

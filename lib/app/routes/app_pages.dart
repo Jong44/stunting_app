@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
 import 'package:stunting_app/app/bindings/auth/LoginBinding.dart';
 import 'package:stunting_app/app/bindings/auth/RegisterBinding.dart';
+import 'package:stunting_app/app/bindings/auth/RegisterDataBinding.dart';
 import 'package:stunting_app/app/bindings/mainpage/MainBinding.dart';
 import 'package:stunting_app/app/bindings/menu/BookImunisasiBinding.dart';
 import 'package:stunting_app/app/controllers/menu/BookImunisasiController.dart';
 import 'package:stunting_app/app/views/auth/LoginPage.dart';
+import 'package:stunting_app/app/views/auth/RegisterDataPage.dart';
 import 'package:stunting_app/app/views/auth/RegisterPage.dart';
 import 'package:stunting_app/app/views/mainpage/MainPage.dart';
 import 'package:stunting_app/app/views/menu/BookImunisasiPage.dart';
@@ -23,6 +25,11 @@ class AppPages {
       binding: RegisterBinding(),
       transition: Transition.fadeIn,
     ),
+    GetPage(
+        name: "/register-data",
+        page: () => const RegisterDataPage(),
+        binding: RegisterDataBinding(),
+        transition: Transition.fadeIn),
     GetPage(
       name: '/mainpage',
       page: () => const MainPage(),

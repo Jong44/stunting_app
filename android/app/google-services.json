@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "298854154272",
+    "firebase_url": "https://stunting-app-e14eb-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "stunting-app-e14eb",
+    "storage_bucket": "stunting-app-e14eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298854154272:android:6223185d8887dab04dbc45",
+        "android_client_info": {
+          "package_name": "com.example.stunting_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298854154272-lgh4f1g8s01192e62kh6hj9cejm79klm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAINJp2riJLmX285P_4iarXDHM9VYvllRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298854154272-lgh4f1g8s01192e62kh6hj9cejm79klm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "298854154272-60ri3c0qaog0o0mhlmjogm4h4mghtf8d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stuntingApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

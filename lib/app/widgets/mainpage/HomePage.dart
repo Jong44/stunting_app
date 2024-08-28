@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
+import 'package:stunting_app/app/controllers/mainpage/pages/HomeController.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/homepage/HomeArtikel.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/homepage/HomeEvent.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/homepage/HomeKomunitas.dart';
@@ -13,6 +15,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HomeController controller = Get.put(HomeController());
     return Scaffold(
         appBar: AppBar(
           scrolledUnderElevation: 0,
@@ -67,7 +70,9 @@ class HomePage extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 15),
-                  HomeProfileAnak(),
+                  HomeProfileAnak(
+                    controller: controller,
+                  ),
                   const SizedBox(height: 25),
                   HomeMenu(),
                   const SizedBox(height: 15),
