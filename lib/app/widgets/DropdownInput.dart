@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DropdownInput extends StatelessWidget {
-  final onChange;
+  final Function onChange;
   final List items;
   final String hintText;
   const DropdownInput({
@@ -29,7 +29,7 @@ class DropdownInput extends StatelessWidget {
         ),
         items: items.map((item) {
           return DropdownMenuItem(
-            child: Text(item),
+            child: Text(item['name']),
             value: item,
           );
         }).toList(),
