@@ -31,11 +31,12 @@ class HomeCardArtikel extends StatelessWidget {
                   color: Colors.grey.shade300),
             ),
             const SizedBox(
-              height: 5,
+              height: 4,
             ),
             Text(
               title,
               maxLines: 2,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontSize: 12,
               ),

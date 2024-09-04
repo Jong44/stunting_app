@@ -2,10 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stunting_app/app/config/ColorConfig.dart';
+import 'package:stunting_app/app/controllers/menu/artikel/ArtikelController.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/homepage/card/HomeCardArtikel.dart';
 
 class HomeArtikel extends StatelessWidget {
-  const HomeArtikel({super.key});
+  final List artikel;
+  const HomeArtikel({super.key, required this.artikel});
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +39,13 @@ class HomeArtikel extends StatelessWidget {
           height: 170,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 5,
+            itemCount: artikel.length,
             itemBuilder: (context, index) {
               return Row(
                 children: [
                   HomeCardArtikel(
-                    image: "",
-                    title: "STTWTWT",
+                    image: artikel[index]['data']['image'],
+                    title: artikel[index]['data']['title'],
                   ),
                   const SizedBox(
                     width: 20,

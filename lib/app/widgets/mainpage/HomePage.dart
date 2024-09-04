@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:stunting_app/app/controllers/mainpage/pages/HomeController.dart';
+import 'package:stunting_app/app/controllers/menu/artikel/ArtikelController.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/homepage/HomeArtikel.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/homepage/HomeEvent.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/homepage/HomeKomunitas.dart';
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeController controller = Get.put(HomeController());
+    final HomeController controllerHome = Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget {
               const SizedBox(width: 10),
               Obx(
                 () => Text(
-                  controller.kecamatan.value,
+                  controllerHome.kecamatan.value,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 13,
@@ -61,7 +62,7 @@ class HomePage extends StatelessWidget {
               children: [
                 const SizedBox(height: 15),
                 HomeProfileAnak(
-                  controller: controller,
+                  controller: controllerHome,
                 ),
                 const SizedBox(height: 25),
                 HomeMenu(),
@@ -70,7 +71,11 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 15),
                 HomeKomunitas(),
                 const SizedBox(height: 15),
-                HomeArtikel(),
+                Obx(() {
+                  return HomeArtikel(
+                    artikel: controllerHome.dataArtikel.value,
+                  );
+                }),
                 const SizedBox(height: 15),
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stunting_app/app/services/ArtikelService.dart';
 import 'package:stunting_app/app/services/GrafikAnakService.dart';
 import 'package:stunting_app/app/services/UserService.dart';
 
@@ -17,6 +18,9 @@ class HomeController extends GetxController {
   var indexAnak = 0.obs;
   var indexGrafik = 0.obs;
 
+  // Artikel
+  var dataArtikel = [].obs;
+
   List jeniiGrafik = [
     'Grafik Berat Badan',
     'Grafik Tinggi Badan',
@@ -28,6 +32,7 @@ class HomeController extends GetxController {
     super.onInit();
     getLokasi();
     getDataAnak();
+    getArtikel();
   }
 
   void getLokasi() async {
@@ -82,6 +87,15 @@ class HomeController extends GetxController {
     } else if (indexGrafik.value == 2) {
       dataDisplay.addAll(dataLingkarKepalaPerBulan);
     }
+  }
+
+  void getArtikel() async {
+    isLoading.value = true;
+    final response = await ArtikelService().getAllArtikel();
+    if (response['status']) {
+      dataArtikel.value = response['data'];
+    }
+    isLoading.value = false;
   }
 
   void showDialogMenu() {

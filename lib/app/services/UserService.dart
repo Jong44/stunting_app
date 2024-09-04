@@ -41,6 +41,8 @@ class UserService {
         'province': province,
         'kabupaten': kabupaten,
         'kecamatan': kecamatan,
+        'createdAt': FieldValue.serverTimestamp(),
+        'updatedAt': FieldValue.serverTimestamp(),
       });
       return response = {
         'status': true,

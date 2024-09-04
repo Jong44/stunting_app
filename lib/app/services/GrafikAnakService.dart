@@ -38,7 +38,9 @@ class GrafikAnakService {
               'berat_badan': beratBadan,
               'lingkar_kepala': lingkarKepala,
             }
-          ]
+          ],
+          'createdAt': FieldValue.serverTimestamp(),
+          'updatedAt': FieldValue.serverTimestamp(),
         });
         return {'status': true};
       } else {
@@ -71,6 +73,7 @@ class GrafikAnakService {
           'tanggal_lahir': tanggalLahir,
           'bulan_lahir': bulanLahir,
           'tahun_lahir': tahunLahir,
+          'updatedAt': FieldValue.serverTimestamp(),
         });
         return {'status': true};
       } else {
@@ -214,6 +217,7 @@ class GrafikAnakService {
                 .collection('data_anak')
                 .doc(id)
                 .update({
+              'updatedAt': FieldValue.serverTimestamp(),
               'data_pertumbuhan': dataPertumbuhan,
             });
             return {'status': true};
@@ -225,6 +229,7 @@ class GrafikAnakService {
                 .collection('data_anak')
                 .doc(id)
                 .update({
+              'updatedAt': FieldValue.serverTimestamp(),
               'data_pertumbuhan': FieldValue.arrayUnion([
                 {
                   'bulan_cek': bulanCek,
