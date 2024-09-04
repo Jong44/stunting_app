@@ -7,6 +7,9 @@ class InputText extends StatelessWidget {
   final onChange;
   final onClick;
   final fontSize;
+  final typeInput;
+  final textController;
+
   const InputText({
     super.key,
     required this.hintText,
@@ -14,6 +17,8 @@ class InputText extends StatelessWidget {
     required this.onChange,
     this.onClick,
     this.fontSize = 14.0,
+    this.typeInput = TextInputType.text,
+    this.textController,
   });
 
   @override
@@ -24,12 +29,14 @@ class InputText extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: TextField(
+        controller: textController,
         onTap: onClick,
         style: TextStyle(
           fontSize: fontSize,
         ),
         onChanged: onChange,
         obscureText: isPassword,
+        keyboardType: typeInput,
         decoration: InputDecoration(
           border: InputBorder.none,
           focusedBorder: OutlineInputBorder(

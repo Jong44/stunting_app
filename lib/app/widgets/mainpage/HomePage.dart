@@ -17,75 +17,66 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final HomeController controller = Get.put(HomeController());
     return Scaffold(
-        appBar: AppBar(
-          scrolledUnderElevation: 0,
-          backgroundColor: Colors.white,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Row(
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.white,
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            children: [
+              const Iconify(Ph.map_pin_light),
+              const SizedBox(width: 10),
+              Obx(
+                () => Text(
+                  controller.kecamatan.value,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+            ],
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Iconify(
+              Ph.bell_light,
+              size: 28,
+            ),
+          ),
+          const SizedBox(width: 5),
+        ],
+        leadingWidth: 200,
+      ),
+      // Ketika Loading menampilkan dialog loading
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: SingleChildScrollView(
+            child: Column(
               children: [
-                Iconify(Ph.map_pin_light),
-                const SizedBox(width: 5),
-                Text(
-                  "Jakarta",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                const SizedBox(height: 15),
+                HomeProfileAnak(
+                  controller: controller,
                 ),
-                const SizedBox(width: 8),
-                InkWell(
-                  onTap: () {},
-                  child: const Icon(
-                    CupertinoIcons.chevron_down,
-                    size: 16,
-                  ),
-                ),
+                const SizedBox(height: 25),
+                HomeMenu(),
+                const SizedBox(height: 15),
+                HomeEvent(),
+                const SizedBox(height: 15),
+                HomeKomunitas(),
+                const SizedBox(height: 15),
+                HomeArtikel(),
+                const SizedBox(height: 15),
               ],
             ),
           ),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Iconify(
-                Ph.envelope_light,
-                size: 28,
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Iconify(
-                Ph.bell_light,
-                size: 28,
-              ),
-            ),
-            const SizedBox(width: 5),
-          ],
-          leadingWidth: 200,
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(height: 15),
-                  HomeProfileAnak(
-                    controller: controller,
-                  ),
-                  const SizedBox(height: 25),
-                  HomeMenu(),
-                  const SizedBox(height: 15),
-                  HomeEvent(),
-                  const SizedBox(height: 15),
-                  HomeKomunitas(),
-                  const SizedBox(height: 15),
-                  HomeArtikel(),
-                  const SizedBox(height: 15),
-                ],
-              ),
-            ),
-          ),
-        ));
+      ),
+    );
   }
 }

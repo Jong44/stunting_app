@@ -107,4 +107,31 @@ class UserService {
       };
     }
   }
+
+  Future getUserData() async {
+    try {
+      User? user = _auth.currentUser;
+      DocumentSnapshot doc =
+          await _firestore.collection('users').doc(user!.uid).get();
+      if (doc.exists) {
+        return response = {
+          'status': true,
+          'message': 'User found',
+          'data': doc.data() as Map<String, dynamic>,
+        };
+      } else {
+        return response = {
+          'status': false,
+          'message': 'User not found',
+          'data': null,
+        };
+      }
+    } on FirebaseAuthException catch (e) {
+      return response = {
+        'status': false,
+        'message': 'Error: ${e.code}',
+        'data': null,
+      };
+    }
+  }
 }

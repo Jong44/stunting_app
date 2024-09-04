@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:stunting_app/app/widgets/PrimaryButton.dart';
 
 class HomeCardProfileAnak extends StatelessWidget {
@@ -41,7 +42,9 @@ class HomeCardProfileAnak extends StatelessWidget {
             width: 180,
             height: 46,
             child: PrimaryButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed("/tambah-anak");
+              },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

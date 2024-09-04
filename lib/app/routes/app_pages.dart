@@ -5,11 +5,14 @@ import 'package:stunting_app/app/bindings/auth/RegisterBinding.dart';
 import 'package:stunting_app/app/bindings/auth/RegisterDataBinding.dart';
 import 'package:stunting_app/app/bindings/mainpage/MainBinding.dart';
 import 'package:stunting_app/app/bindings/menu/BookImunisasiBinding.dart';
-import 'package:stunting_app/app/controllers/menu/BookImunisasiController.dart';
+import 'package:stunting_app/app/bindings/menu/data_anak/TambahDataAnakBinding.dart';
+import 'package:stunting_app/app/bindings/menu/data_anak/UpdateDataAnakBinding.dart';
 import 'package:stunting_app/app/views/auth/EmailVerifPage.dart';
 import 'package:stunting_app/app/views/auth/LoginPage.dart';
 import 'package:stunting_app/app/views/auth/RegisterDataPage.dart';
 import 'package:stunting_app/app/views/auth/RegisterPage.dart';
+import 'package:stunting_app/app/views/form/data_anak/FormTambahDataAnak.dart';
+import 'package:stunting_app/app/views/form/data_anak/FormUpdateDataAnak.dart';
 import 'package:stunting_app/app/views/mainpage/MainPage.dart';
 import 'package:stunting_app/app/views/menu/BookImunisasiPage.dart';
 
@@ -49,6 +52,18 @@ class AppPages {
       page: () => const BookImunisasiPage(),
       transition: Transition.fadeIn,
       binding: BookImunisasiBinding(),
+    ),
+    GetPage(
+      name: '/tambah-anak',
+      page: () => const FormTambahDataAnak(),
+      transition: Transition.fadeIn,
+      binding: TambahDataAnakBinding(),
+    ),
+    GetPage(
+      name: '/update-anak/:id',
+      page: () => const FormUpdateDataAnak(),
+      transition: Transition.fadeIn,
+      binding: UpdateDataAnakBinding(),
     ),
   ];
 }
