@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HomeController controllerHome = Get.put(HomeController());
+    final ArtikelController controllerArtikel = Get.put(ArtikelController());
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
@@ -73,6 +74,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 15),
                 Obx(() {
                   return HomeArtikel(
+                    controller: controllerArtikel,
                     artikel: controllerHome.dataArtikel.value,
                   );
                 }),

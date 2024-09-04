@@ -58,7 +58,10 @@ class ArtikelService {
         if (data.exists) {
           return response = {
             'status': true,
-            'data': data.data(),
+            'data': {
+              'id': data.id,
+              'data': data.data(),
+            },
           };
         } else {
           return response = {
@@ -98,6 +101,47 @@ class ArtikelService {
           return response = {
             'status': true,
             'data': listData,
+          };
+        } else {
+          return response = {
+            'status': false,
+            'message': 'Data not found',
+            'data': null,
+          };
+        }
+      } else {
+        return response = {
+          'status': false,
+          'message': 'User not found',
+          'data': null,
+        };
+      }
+    } catch (e) {
+      return response = {
+        'status': false,
+        'message': 'Error: ${e.toString()}',
+        'data': null,
+      };
+    }
+  }
+
+  Future updateJumlahPenonton(String id) async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        final data = await _firestore.collection('artikels').doc(id).get();
+        if (data.exists) {
+          final jumlahPenonton = data.data()!['jumlah_penonton'] ?? 0;
+          final jumlahPenontonUpdate = jumlahPenonton + 1;
+          await _firestore.collection('artikels').doc(id).update({
+            'jumlah_penonton': jumlahPenontonUpdate,
+          });
+          return response = {
+            'status': true,
+            'message': 'Jumlah penonton berhasil diupdate',
+            'data': {
+              'jumlah_penonton': jumlahPenontonUpdate,
+            },
           };
         } else {
           return response = {

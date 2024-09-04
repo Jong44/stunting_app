@@ -1,10 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stunting_app/app/controllers/mainpage/pages/HomeController.dart';
-import 'package:stunting_app/app/widgets/PrimaryButton.dart';
 
 class HomeCardChartAnak extends StatelessWidget {
   final Map dataAnak;
@@ -79,8 +76,8 @@ class HomeCardChartAnak extends StatelessWidget {
     }
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 3),
-      padding: EdgeInsets.all(15),
+      margin: const EdgeInsets.symmetric(horizontal: 3),
+      padding: const EdgeInsets.all(15),
       width: double.infinity,
       height: 205,
       decoration: BoxDecoration(
@@ -100,7 +97,7 @@ class HomeCardChartAnak extends StatelessWidget {
         children: [
           Text(
             "${dataAnak['nama_bayi']} - ${getUmur(dataAnak['tanggal_lahir'], dataAnak['bulan_lahir'], dataAnak['tahun_lahir'])}",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
@@ -113,27 +110,27 @@ class HomeCardChartAnak extends StatelessWidget {
               Obx(() {
                 return Text(
                   jenisGrafik[controller.indexGrafik.value],
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 );
               }),
-              Spacer(),
+              const Spacer(),
               InkWell(
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () {
                   controller.showDialogMenu();
                 },
-                child: Icon(
+                child: const Icon(
                   Icons.more_horiz,
                   size: 15.0,
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Expanded(
@@ -171,12 +168,12 @@ class HomeCardChartAnak extends StatelessWidget {
                       );
                     },
                   ),
-                  titlesData: FlTitlesData(
+                  titlesData: const FlTitlesData(
                     show: true,
-                    rightTitles: const AxisTitles(
+                    rightTitles: AxisTitles(
                       sideTitles: SideTitles(showTitles: false),
                     ),
-                    topTitles: const AxisTitles(
+                    topTitles: AxisTitles(
                       sideTitles: SideTitles(showTitles: false),
                     ),
                     bottomTitles: AxisTitles(
@@ -219,10 +216,10 @@ class HomeCardChartAnak extends StatelessWidget {
                         },
                       ),
                       isCurved: true,
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                         colors: [
-                          const Color(0xff23b6e6),
-                          const Color(0xff02d39a),
+                          Color(0xff23b6e6),
+                          Color(0xff02d39a),
                         ],
                       ),
                       barWidth: 1,
@@ -292,7 +289,7 @@ Widget bottomTitleWidgets(double value, TitleMeta meta) {
         );
       } else {
         // Fallback jika data tidak valid
-        text = Text(
+        text = const Text(
           'N/A', // atau teks default lainnya
           style: style,
           textAlign: TextAlign.center,
@@ -300,7 +297,7 @@ Widget bottomTitleWidgets(double value, TitleMeta meta) {
       }
     } else {
       // Fallback jika value tidak dalam range yang valid
-      text = Text(
+      text = const Text(
         'N/A', // atau teks default lainnya
         style: style,
         textAlign: TextAlign.center,
@@ -324,8 +321,7 @@ Widget leftTitleWidgets(double value, TitleMeta meta) {
 
   // Mengecek nilai value dan menentukan text yang akan ditampilkan pada left title
   return Obx(() {
-    final listValue =
-        controller.dataDisplay.value.map((e) => e['value']).toList();
+    final listValue = controller.dataDisplay.map((e) => e['value']).toList();
 
     // mengambil berat terbesar dari data berat badan per bulan
     double maxValue =

@@ -5,6 +5,7 @@ import 'package:stunting_app/app/bindings/auth/RegisterBinding.dart';
 import 'package:stunting_app/app/bindings/auth/RegisterDataBinding.dart';
 import 'package:stunting_app/app/bindings/mainpage/MainBinding.dart';
 import 'package:stunting_app/app/bindings/menu/BookImunisasiBinding.dart';
+import 'package:stunting_app/app/bindings/menu/artikel/ArtikelBinding.dart';
 import 'package:stunting_app/app/bindings/menu/data_anak/TambahDataAnakBinding.dart';
 import 'package:stunting_app/app/bindings/menu/data_anak/UpdateDataAnakBinding.dart';
 import 'package:stunting_app/app/views/auth/EmailVerifPage.dart';
@@ -15,6 +16,8 @@ import 'package:stunting_app/app/views/form/data_anak/FormTambahDataAnak.dart';
 import 'package:stunting_app/app/views/form/data_anak/FormUpdateDataAnak.dart';
 import 'package:stunting_app/app/views/mainpage/MainPage.dart';
 import 'package:stunting_app/app/views/menu/BookImunisasiPage.dart';
+import 'package:stunting_app/app/views/menu/artikel/ArtikelMainPage.dart';
+import 'package:stunting_app/app/views/menu/artikel/detail/ArtikelDetailPage.dart';
 
 class AppPages {
   static final pages = [
@@ -64,6 +67,18 @@ class AppPages {
       page: () => const FormUpdateDataAnak(),
       transition: Transition.fadeIn,
       binding: UpdateDataAnakBinding(),
+    ),
+    GetPage(
+      name: '/artikel',
+      page: () => const ArtikelMainPage(),
+      transition: Transition.fadeIn,
+      binding: ArtikelBinding(),
+    ),
+    GetPage(
+      name: '/artikel/:id',
+      page: () => const ArtikelDetailPage(),
+      transition: Transition.fadeIn,
+      binding: ArtikelBinding(),
     ),
   ];
 }
