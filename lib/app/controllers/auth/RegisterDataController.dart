@@ -83,6 +83,7 @@ class RegisterDataController extends GetxController {
     listProvince.value = jsonProvince;
     listKabupaten.value = jsonKabupaten;
     listKecamatan.value = jsonKecamatan;
+
     isLoading.value = false;
   }
 
@@ -116,6 +117,7 @@ class RegisterDataController extends GetxController {
         responseUser['data'].uid,
         name.value,
         email.value,
+        gender.value,
         province.value['name'],
         kabupaten.value['name'],
         kecamatan.value['name'],

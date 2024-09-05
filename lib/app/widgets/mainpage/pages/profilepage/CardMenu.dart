@@ -2,14 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stunting_app/app/config/ColorConfig.dart';
+import 'package:stunting_app/app/controllers/mainpage/pages/ProfileController.dart';
 
 class CardMenu extends StatelessWidget {
   final List menuProfile;
   final int indexMenu;
+  final ProfileController controller;
   const CardMenu({
     super.key,
     required this.menuProfile,
     required this.indexMenu,
+    required this.controller,
   });
 
   void showDialogLogout(BuildContext context) {
@@ -28,10 +31,10 @@ class CardMenu extends StatelessWidget {
                   style: TextStyle(color: Colors.black.withOpacity(0.5))),
             ),
             TextButton(
-              onPressed: () async {
-                Get.offNamed('/login');
+              onPressed: () {
+                controller.logout();
               },
-              child: Text("Keluar",
+              child: const Text("Keluar",
                   style: TextStyle(color: ColorConfig.primaryColor)),
             ),
           ],

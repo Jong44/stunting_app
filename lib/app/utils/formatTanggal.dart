@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/date_symbol_data_file.dart';
 import 'package:intl/intl.dart';
 
 String formatTanggalHari(DateTime date) {
@@ -21,7 +20,7 @@ String formatTanggalHari(DateTime date) {
     hari = "Minggu";
   }
   final formatter = DateFormat('dd MMMM yyyy');
-  tanggal = hari + ", " + formatter.format(date).toString();
+  tanggal = "$hari, ${formatter.format(date)}";
   return tanggal;
 }
 

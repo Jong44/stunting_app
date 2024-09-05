@@ -4,6 +4,7 @@ import 'package:stunting_app/app/bindings/auth/LoginBinding.dart';
 import 'package:stunting_app/app/bindings/auth/RegisterBinding.dart';
 import 'package:stunting_app/app/bindings/auth/RegisterDataBinding.dart';
 import 'package:stunting_app/app/bindings/mainpage/MainBinding.dart';
+import 'package:stunting_app/app/bindings/mainpage/ProfileBinding.dart';
 import 'package:stunting_app/app/bindings/menu/BookImunisasiBinding.dart';
 import 'package:stunting_app/app/bindings/menu/artikel/ArtikelBinding.dart';
 import 'package:stunting_app/app/bindings/menu/data_anak/TambahDataAnakBinding.dart';
@@ -18,6 +19,7 @@ import 'package:stunting_app/app/views/mainpage/MainPage.dart';
 import 'package:stunting_app/app/views/menu/BookImunisasiPage.dart';
 import 'package:stunting_app/app/views/menu/artikel/ArtikelMainPage.dart';
 import 'package:stunting_app/app/views/menu/artikel/detail/ArtikelDetailPage.dart';
+import 'package:stunting_app/app/views/menu/profile/DetailProfilePage.dart';
 
 class AppPages {
   static final pages = [
@@ -79,6 +81,12 @@ class AppPages {
       page: () => const ArtikelDetailPage(),
       transition: Transition.fadeIn,
       binding: ArtikelBinding(),
+    ),
+    GetPage(
+      name: '/profile',
+      page: () => const DetailProfilePage(),
+      transition: Transition.fadeIn,
+      binding: ProfileBinding(),
     ),
   ];
 }

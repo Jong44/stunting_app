@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:stunting_app/app/controllers/mainpage/pages/ProfileController.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/profilepage/CardMenu.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/profilepage/CardProfile.dart';
 
@@ -43,35 +45,38 @@ class ProfilePage extends StatelessWidget {
         ]
       }
     ];
+    final ProfileController profileController = Get.put(ProfileController());
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+        child: SingleChildScrollView(child: Obx(() {
+          if (profileController.isLoading.value) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                CardProfile(profile: {
-                  "fullname": "John Doe",
-                  "email": "johndoe@gmail.com",
-                  "photo":
-                      "https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"
-                }),
-                SizedBox(
+                CardProfile(profile: profileController.dataProfile),
+                const SizedBox(
                   height: 40,
                 ),
                 Column(
                   children: List.generate(
                       menuProfile.length,
                       (indexMenu) => CardMenu(
-                          menuProfile: menuProfile, indexMenu: indexMenu)),
+                          controller: profileController,
+                          menuProfile: menuProfile,
+                          indexMenu: indexMenu)),
                 ),
               ],
             ),
-          ),
-        ),
+          );
+        })),
       ),
     );
   }

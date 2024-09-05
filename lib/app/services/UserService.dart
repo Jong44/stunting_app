@@ -1,11 +1,14 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class UserService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
 
   var response = {
     'status': false,
@@ -30,8 +33,14 @@ class UserService {
     }
   }
 
-  Future saveDataUserFirestore(String uid, String name, String email,
-      String province, String kabupaten, String kecamatan) async {
+  Future saveDataUserFirestore(
+      String uid,
+      String name,
+      String email,
+      String gender,
+      String province,
+      String kabupaten,
+      String kecamatan) async {
     try {
       User? user = _auth.currentUser!;
       _firestore.collection('users').doc(user.uid).set({
@@ -116,10 +125,12 @@ class UserService {
       DocumentSnapshot doc =
           await _firestore.collection('users').doc(user!.uid).get();
       if (doc.exists) {
+        var data = doc.data() as Map<String, dynamic>;
+        data['username'] = user.displayName;
         return response = {
           'status': true,
           'message': 'User found',
-          'data': doc.data() as Map<String, dynamic>,
+          'data': data,
         };
       } else {
         return response = {
@@ -128,6 +139,66 @@ class UserService {
           'data': null,
         };
       }
+    } on FirebaseAuthException catch (e) {
+      return response = {
+        'status': false,
+        'message': 'Error: ${e.code}',
+        'data': null,
+      };
+    }
+  }
+
+  Future updateDataUserFirestore(
+      String username,
+      String name,
+      String email,
+      String gender,
+      String province,
+      String kabupaten,
+      String kecamatan) async {
+    try {
+      User? user = _auth.currentUser;
+      user!.updateDisplayName(username);
+      await _firestore.collection('users').doc(user!.uid).update({
+        'name': name,
+        'email': email,
+        'gender': gender,
+        'province': province,
+        'kabupaten': kabupaten,
+        'kecamatan': kecamatan,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+      return response = {
+        'status': true,
+        'message': 'Data updated',
+        'data': user,
+      };
+    } on FirebaseAuthException catch (e) {
+      return response = {
+        'status': false,
+        'message': 'Error: ${e.code}',
+        'data': null,
+      };
+    }
+  }
+
+  Future uploadProfilePicture(File newImage, String oldUrl) async {
+    try {
+      User? user = _auth.currentUser;
+      if (oldUrl != '') {
+        await _storage.refFromURL(oldUrl).delete();
+      }
+      var ref = _storage.ref().child('profile/${user!.uid}');
+      await ref.putFile(newImage);
+      var url = await ref.getDownloadURL();
+      _firestore.collection('users').doc(user.uid).update({
+        'photoURL': url,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+      return response = {
+        'status': true,
+        'message': 'Image uploaded',
+      };
     } on FirebaseAuthException catch (e) {
       return response = {
         'status': false,
