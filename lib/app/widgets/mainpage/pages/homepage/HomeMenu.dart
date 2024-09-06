@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/carbon.dart';
 import 'package:iconify_flutter/icons/game_icons.dart';
@@ -28,7 +29,7 @@ class HomeMenu extends StatelessWidget {
       {
         "icon": Mdi.food_outline,
         "title": "Makanan Sehat",
-        "route": "/makanan-sehat",
+        "route": "/resep",
       },
       {
         "icon": Carbon.development,
@@ -72,7 +73,7 @@ class HomeMenu extends StatelessWidget {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () {
-                Navigator.pushNamed(context, menu[index]["route"]);
+                Get.toNamed(menu[index]["route"]);
               },
               child: Column(
                 children: [

@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(width: 5),
         ],
-        leadingWidth: 200,
+        leadingWidth: 300,
       ),
       // Ketika Loading menampilkan dialog loading
       body: SafeArea(
