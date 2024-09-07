@@ -9,6 +9,7 @@ import 'package:stunting_app/app/bindings/menu/BookImunisasiBinding.dart';
 import 'package:stunting_app/app/bindings/menu/artikel/ArtikelBinding.dart';
 import 'package:stunting_app/app/bindings/menu/data_anak/TambahDataAnakBinding.dart';
 import 'package:stunting_app/app/bindings/menu/data_anak/UpdateDataAnakBinding.dart';
+import 'package:stunting_app/app/bindings/menu/maps/MapsPemetaanBinding.dart';
 import 'package:stunting_app/app/bindings/menu/resep/ResepBinding.dart';
 import 'package:stunting_app/app/views/auth/EmailVerifPage.dart';
 import 'package:stunting_app/app/views/auth/LoginPage.dart';
@@ -20,6 +21,7 @@ import 'package:stunting_app/app/views/mainpage/MainPage.dart';
 import 'package:stunting_app/app/views/menu/BookImunisasiPage.dart';
 import 'package:stunting_app/app/views/menu/artikel/ArtikelMainPage.dart';
 import 'package:stunting_app/app/views/menu/artikel/detail/ArtikelDetailPage.dart';
+import 'package:stunting_app/app/views/menu/maps/MapsPemetaan.dart';
 import 'package:stunting_app/app/views/menu/profile/DetailProfilePage.dart';
 import 'package:stunting_app/app/views/menu/resep/ResepAllPage.dart';
 import 'package:stunting_app/app/views/menu/resep/ResepDetailPage.dart';
@@ -96,6 +98,12 @@ class AppPages {
       page: () => const ResepDetailPage(),
       transition: Transition.fadeIn,
       binding: ResepBinding(),
+    ),
+    GetPage(
+      name: '/pemetaan',
+      page: () => const MapsPemetaan(),
+      transition: Transition.fadeIn,
+      binding: MapsPemetaanBinding(),
     ),
     GetPage(
       name: '/profile',

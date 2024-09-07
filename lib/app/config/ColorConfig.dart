@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ColorConfig {
   static const MaterialColor primaryColor = MaterialColor(
-    0xFF3A1667,
+    0xFF7850B2,
     <int, Color>{
       50: Color(0xFF3A1667),
       100: Color(0xFF3A1667),

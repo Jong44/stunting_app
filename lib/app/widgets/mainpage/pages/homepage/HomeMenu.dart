@@ -49,7 +49,7 @@ class HomeMenu extends StatelessWidget {
       {
         "icon": Healthicons.hospital_outline,
         "title": "Klinik Terdekat",
-        "route": "/klinik-terdekat",
+        "route": "/pemetaan",
       },
       {
         "icon": MaterialSymbols.article_outline,
