@@ -9,9 +9,12 @@ import 'package:iconify_flutter/icons/material_symbols.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:stunting_app/app/config/ColorConfig.dart';
+import 'package:stunting_app/app/controllers/mainpage/MainController.dart';
+import 'package:stunting_app/app/controllers/mainpage/pages/HomeController.dart';
 
 class HomeMenu extends StatelessWidget {
-  const HomeMenu({super.key});
+  final MainController controllerHome;
+  const HomeMenu({super.key, required this.controllerHome});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class HomeMenu extends StatelessWidget {
       {
         "icon": Ph.chart_line,
         "title": "Grafik Tumbuh",
-        "route": "/grafik-tumbuh",
+        "route": "/blank-page",
       },
       {
         "icon": Mdi.food_outline,
@@ -34,12 +37,12 @@ class HomeMenu extends StatelessWidget {
       {
         "icon": Carbon.development,
         "title": "Tahap Kembang",
-        "route": "/tahap-kembang",
+        "route": "/blank-page",
       },
       {
         "icon": Carbon.game_console,
         "title": "Game Anak",
-        "route": "/game-anak",
+        "route": "/blank-page",
       },
       {
         "icon": Healthicons.doctor_male_outline,
@@ -73,7 +76,12 @@ class HomeMenu extends StatelessWidget {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () {
-                Get.toNamed(menu[index]["route"]);
+                if (menu[index]["route"] == "/tanya-dokter") {
+                  controllerHome.tabIndex.value = 1;
+                  print(controllerHome.tabIndex.value);
+                } else {
+                  Get.toNamed(menu[index]["route"]);
+                }
               },
               child: Column(
                 children: [

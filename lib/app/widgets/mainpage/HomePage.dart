@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
+import 'package:stunting_app/app/controllers/mainpage/MainController.dart';
 import 'package:stunting_app/app/controllers/mainpage/pages/HomeController.dart';
 import 'package:stunting_app/app/controllers/menu/artikel/ArtikelController.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/homepage/HomeArtikel.dart';
@@ -18,6 +19,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final HomeController controllerHome = Get.put(HomeController());
     final ArtikelController controllerArtikel = Get.put(ArtikelController());
+    final MainController controller = Get.put(MainController());
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
@@ -66,7 +68,9 @@ class HomePage extends StatelessWidget {
                   controller: controllerHome,
                 ),
                 const SizedBox(height: 25),
-                HomeMenu(),
+                HomeMenu(
+                  controllerHome: controller,
+                ),
                 const SizedBox(height: 15),
                 HomeEvent(),
                 const SizedBox(height: 15),

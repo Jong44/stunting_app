@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:stunting_app/app/controllers/mainpage/pages/ConsultationController.dart';
+import 'package:stunting_app/app/utils/formatRupiah.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/consultationpage/card/CardAllConsul.dart';
 
 class ConsulAllConsul extends StatelessWidget {
-  const ConsulAllConsul({super.key});
+  final List data;
+  final ConsultationController controller;
+  const ConsulAllConsul(
+      {super.key, required this.data, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +25,19 @@ class ConsulAllConsul extends StatelessWidget {
         const SizedBox(height: 10),
         Column(
           children: List.generate(
-            5,
-            (index) => CardAllConsul(
-              name: "Dr. John Doe",
-              image:
-                  "https://images.unsplash.com/photo-1601933340161-4b3b1f1f3b3b",
-              experience: "5 Tahun",
-              price: 50000,
-              category: ["Kesehatan", "Anak"],
+            data.length,
+            (index) => InkWell(
+              onTap: () {
+                controller.getDokterById(data[index]['id']);
+                Get.toNamed('/consultation');
+              },
+              child: CardAllConsul(
+                name: data[index]['data']['name'],
+                image: data[index]['data']['imageUrl'],
+                experience: data[index]['data']['experience'].toString(),
+                price: data[index]['data']['price'],
+                category: data[index]['data']['categories'],
+              ),
             ),
           ),
         )

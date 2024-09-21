@@ -1,9 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:stunting_app/app/controllers/mainpage/pages/ConsultationController.dart';
 import 'package:stunting_app/app/widgets/mainpage/pages/consultationpage/card/CardRecomendedConsul.dart';
 
 class ConsulRecomendedConsul extends StatelessWidget {
-  const ConsulRecomendedConsul({super.key});
+  final List data;
+  final ConsultationController controller;
+  const ConsulRecomendedConsul(
+      {super.key, required this.data, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -18,23 +23,28 @@ class ConsulRecomendedConsul extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Container(
+        SizedBox(
           height: 265,
           child: ListView.builder(
-            padding: EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
             scrollDirection: Axis.horizontal,
-            itemCount: 5,
+            itemCount: data.length,
             itemBuilder: (context, index) {
               return Row(
                 children: [
-                  CardRecomendedConsul(
-                    name: "Dr. John Doe",
-                    image:
-                        "https://images.unsplash.com/photo-1601933340161-4b3b1f1f3b3b",
-                    experience: "5 Tahun",
-                    price: 50000,
-                    category: ["Kesehatan", "Anak"],
-                    spesialis: "Dokter Anak",
+                  InkWell(
+                    onTap: () {
+                      controller.getDokterById(data[index]['id']);
+                      Get.toNamed('/consultation');
+                    },
+                    child: CardRecomendedConsul(
+                      name: data[index]['data']['name'],
+                      image: data[index]['data']['imageUrl'],
+                      experience: "${data[index]['data']['experience']} Tahun",
+                      price: data[index]['data']['price'],
+                      category: data[index]['data']['categories'],
+                      spesialis: data[index]['data']['specialization'],
+                    ),
                   ),
                   const SizedBox(width: 15),
                 ],
