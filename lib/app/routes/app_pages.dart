@@ -3,6 +3,7 @@ import 'package:stunting_app/app/bindings/auth/EmailVerifBinding.dart';
 import 'package:stunting_app/app/bindings/auth/LoginBinding.dart';
 import 'package:stunting_app/app/bindings/auth/RegisterBinding.dart';
 import 'package:stunting_app/app/bindings/auth/RegisterDataBinding.dart';
+import 'package:stunting_app/app/bindings/mainpage/CommunityBindings.dart';
 import 'package:stunting_app/app/bindings/mainpage/ConsultationBinding.dart';
 import 'package:stunting_app/app/bindings/mainpage/MainBinding.dart';
 import 'package:stunting_app/app/bindings/mainpage/ProfileBinding.dart';
@@ -23,6 +24,8 @@ import 'package:stunting_app/app/views/mainpage/MainPage.dart';
 import 'package:stunting_app/app/views/menu/BookImunisasiPage.dart';
 import 'package:stunting_app/app/views/menu/artikel/ArtikelMainPage.dart';
 import 'package:stunting_app/app/views/menu/artikel/detail/ArtikelDetailPage.dart';
+import 'package:stunting_app/app/views/menu/community/CreateThreads.dart';
+import 'package:stunting_app/app/views/menu/community/DetailThread.dart';
 import 'package:stunting_app/app/views/menu/consulatation/DetailConsultation.dart';
 import 'package:stunting_app/app/views/menu/consulatation/ReviewConsultation.dart';
 import 'package:stunting_app/app/views/menu/consulatation/SuccessTransaksi.dart';
@@ -131,6 +134,17 @@ class AppPages {
     GetPage(
       name: '/transaksi/:status',
       page: () => const SuccessTransaksi(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: '/create-thread',
+      page: () => const CreateThreads(),
+      transition: Transition.fadeIn,
+      binding: CommunityBindings(),
+    ),
+    GetPage(
+      name: '/detail-thread/:id',
+      page: () => const DetailThread(),
       transition: Transition.fadeIn,
     ),
     GetPage(

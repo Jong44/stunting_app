@@ -9,6 +9,7 @@ class InputText extends StatelessWidget {
   final fontSize;
   final typeInput;
   final textController;
+  final maxLines;
 
   const InputText({
     super.key,
@@ -19,6 +20,7 @@ class InputText extends StatelessWidget {
     this.fontSize = 14.0,
     this.typeInput = TextInputType.text,
     this.textController,
+    this.maxLines = 1,
   });
 
   @override
@@ -37,6 +39,7 @@ class InputText extends StatelessWidget {
         onChanged: onChange,
         obscureText: isPassword,
         keyboardType: typeInput,
+        maxLines: maxLines,
         decoration: InputDecoration(
           border: InputBorder.none,
           focusedBorder: OutlineInputBorder(

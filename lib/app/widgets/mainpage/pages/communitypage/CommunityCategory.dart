@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -46,7 +45,7 @@ class CommunityCategory extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 categories[index]['name'],
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
