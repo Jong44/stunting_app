@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stunting_app/app/services/CommunityService.dart';
+import 'package:stunting_app/app/services/UserService.dart';
 
 class CommunityController extends GetxController {
   var isLoading = false.obs;
+  var isOpenSelengkapnya = false.obs;
 
   var listCommunity = [].obs;
   var dataCommunity = {}.obs;
@@ -161,7 +162,12 @@ class CommunityController extends GetxController {
     isLoading.value = false;
   }
 
-  void changeDataCommunity(Map data) {
+  void changeDataCommunity(Map data) async {
     dataCommunity.value = data;
+    var response = await UserService().getUserData();
+    if (response['status']) {
+      final data = response['data'];
+      dataCommunity['user'] = data;
+    }
   }
 }
