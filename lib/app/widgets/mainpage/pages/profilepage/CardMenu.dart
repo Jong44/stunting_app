@@ -78,11 +78,8 @@ class CardMenu extends StatelessWidget {
                       print("Keluar");
                       showDialogLogout(context);
                     } else {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => menuProfile[indexMenu]
-                                  ['listMenu'][indexSubMenu]['path']));
+                      Get.toNamed(menuProfile[indexMenu]['listMenu']
+                          [indexSubMenu]['path']);
                     }
                   }
                 },

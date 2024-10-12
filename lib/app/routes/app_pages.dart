@@ -33,6 +33,7 @@ import 'package:stunting_app/app/views/menu/maps/MapsPemetaan.dart';
 import 'package:stunting_app/app/views/menu/profile/DetailProfilePage.dart';
 import 'package:stunting_app/app/views/menu/resep/ResepAllPage.dart';
 import 'package:stunting_app/app/views/menu/resep/ResepDetailPage.dart';
+import 'package:stunting_app/app/views/menu/setting/PusatBantuanPage.dart';
 
 class AppPages {
   static final pages = [
@@ -150,6 +151,11 @@ class AppPages {
     GetPage(
       name: "/blank-page",
       page: () => const BlankPage(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: "/pusat-bantuan",
+      page: () => const PusatBantuanPage(),
       transition: Transition.fadeIn,
     ),
   ];

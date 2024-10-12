@@ -21,6 +21,7 @@ class ProfilePage extends StatelessWidget {
         "listMenu": [
           {
             "nama": "Pusat Bantuan",
+            "path": "pusat-bantuan",
           },
           {
             "nama": "Tentang",
