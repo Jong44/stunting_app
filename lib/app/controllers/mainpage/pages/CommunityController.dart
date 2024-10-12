@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,6 +8,7 @@ import 'package:stunting_app/app/services/CommunityService.dart';
 import 'package:stunting_app/app/services/UserService.dart';
 
 class CommunityController extends GetxController {
+  final _database = FirebaseDatabase.instance.ref();
   var isLoading = false.obs;
   var isOpenSelengkapnya = false.obs;
 
@@ -18,6 +20,9 @@ class CommunityController extends GetxController {
   var kategoriList = [].obs;
   var selectedKategori = ''.obs;
   var newImage = File("").obs;
+
+  var commentController = TextEditingController().obs;
+  var listComment = [].obs;
 
   Future<void> getImageFromGallery() async {
     final picker = ImagePicker();
@@ -169,5 +174,51 @@ class CommunityController extends GetxController {
       final data = response['data'];
       dataCommunity['user'] = data;
     }
+    getComment();
+  }
+
+  void sendComment(String content) async {
+    Get.snackbar(
+      'Loading',
+      'Tunggu sebentar!',
+      showProgressIndicator: true,
+    );
+    if (content.isEmpty) {
+      Get.snackbar(
+        'Error',
+        'Komentar Tidak Boleh Kosong',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
+    final response = await CommunityService().sendComment(
+      dataCommunity['id'],
+      content,
+    );
+    if (response['status']) {
+      Get.back();
+      Get.snackbar(
+        'Success',
+        'Komentar Berhasil Dikirim',
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    } else {
+      Get.snackbar('Error', response['message']);
+    }
+    commentController.value.clear();
+  }
+
+  void getComment() async {
+    listComment.clear();
+    final dbStream =
+        _database.child('commentCommunity').child(dataCommunity['id']).onValue;
+    dbStream.listen((DatabaseEvent event) {
+      final data = event.snapshot.value as Map<dynamic, dynamic>?;
+      if (data != null) {
+        listComment.value = data.entries.map((e) => e.value).toList();
+      }
+    });
   }
 }

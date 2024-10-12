@@ -234,6 +234,7 @@ class UserService {
         'photoURL': url,
         'updatedAt': FieldValue.serverTimestamp(),
       });
+      user.updatePhotoURL(url);
       return response = {
         'status': true,
         'message': 'Image uploaded',

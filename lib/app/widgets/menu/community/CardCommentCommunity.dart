@@ -1,36 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:stunting_app/app/utils/formatTanggal.dart';
 
-class CardDetailCommunity extends StatelessWidget {
+class CardCommentCommunity extends StatelessWidget {
   final String photoURL;
   final String category;
   final String name;
   final DateTime createdAt;
   final String title;
   final String content;
-  final bool isOpenSelengkapnya;
-  final Function() onTapSelengkapnya;
-
-  const CardDetailCommunity({
-    super.key,
-    required this.photoURL,
-    required this.category,
-    required this.name,
-    required this.createdAt,
-    required this.title,
-    required this.content,
-    required this.isOpenSelengkapnya,
-    required this.onTapSelengkapnya,
-  });
+  const CardCommentCommunity(
+      {super.key,
+      required this.photoURL,
+      required this.category,
+      required this.name,
+      required this.createdAt,
+      required this.title,
+      required this.content});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 10, left: 2, right: 2),
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
         vertical: 12,
       ),
-      height: null,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -60,7 +54,7 @@ class CardDetailCommunity extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    category,
+                    name,
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -70,14 +64,6 @@ class CardDetailCommunity extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        name,
-                        style: const TextStyle(
-                          fontSize: 10.0,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(width: 5),
                       const Icon(
                         Icons.circle,
                         size: 5,
@@ -99,31 +85,15 @@ class CardDetailCommunity extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          Text(title,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              )),
-          const SizedBox(height: 5),
           Text(
             content,
             overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.justify,
-            maxLines: isOpenSelengkapnya ? 100 : 3,
+            maxLines: 3,
             style: const TextStyle(fontSize: 12, color: Colors.grey),
           ),
           const SizedBox(
             height: 5,
           ),
-          InkWell(
-            onTap: () {
-              onTapSelengkapnya();
-            },
-            child: const Text(
-              "Selengkapnya",
-              style: TextStyle(fontSize: 12.0),
-            ),
-          )
         ],
       ),
     );

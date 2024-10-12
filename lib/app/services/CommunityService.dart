@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class CommunityService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
   var response = {
     'status': false,
     'message': '',
@@ -225,6 +227,37 @@ class CommunityService {
             'data': null,
           };
         }
+      } else {
+        return response = {
+          'status': false,
+          'message': 'User not found',
+          'data': null,
+        };
+      }
+    } catch (e) {
+      return response = {
+        'status': false,
+        'message': 'Error: ${e.toString()}',
+        'data': null,
+      };
+    }
+  }
+
+  Future sendComment(String id, String comment) async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        await _database.ref().child('commentCommunity').child(id).push().set({
+          'userId': user.uid,
+          'photoURL': user.photoURL,
+          'name': user.displayName,
+          'comment': comment,
+          'createdAt': DateTime.now().toIso8601String(),
+        });
+        return response = {
+          'status': true,
+          'message': 'Comment created',
+        };
       } else {
         return response = {
           'status': false,
