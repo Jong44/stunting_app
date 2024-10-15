@@ -42,7 +42,7 @@ class HomeMenu extends StatelessWidget {
       {
         "icon": Carbon.game_console,
         "title": "Game Anak",
-        "route": "/blank-page",
+        "route": "/game-level",
       },
       {
         "icon": Healthicons.doctor_male_outline,

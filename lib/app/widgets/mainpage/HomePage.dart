@@ -59,7 +59,7 @@ class HomePage extends StatelessWidget {
       // Ketika Loading menampilkan dialog loading
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -72,9 +72,9 @@ class HomePage extends StatelessWidget {
                   controllerHome: controller,
                 ),
                 const SizedBox(height: 15),
-                HomeEvent(),
+                const HomeEvent(),
                 const SizedBox(height: 15),
-                HomeKomunitas(),
+                const HomeKomunitas(),
                 const SizedBox(height: 15),
                 Obx(() {
                   return HomeArtikel(

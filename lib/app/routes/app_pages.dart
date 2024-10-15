@@ -11,6 +11,7 @@ import 'package:stunting_app/app/bindings/menu/BookImunisasiBinding.dart';
 import 'package:stunting_app/app/bindings/menu/artikel/ArtikelBinding.dart';
 import 'package:stunting_app/app/bindings/menu/data_anak/TambahDataAnakBinding.dart';
 import 'package:stunting_app/app/bindings/menu/data_anak/UpdateDataAnakBinding.dart';
+import 'package:stunting_app/app/bindings/menu/game/GameBIndings.dart';
 import 'package:stunting_app/app/bindings/menu/maps/MapsPemetaanBinding.dart';
 import 'package:stunting_app/app/bindings/menu/resep/ResepBinding.dart';
 import 'package:stunting_app/app/views/BlankPage.dart';
@@ -29,6 +30,9 @@ import 'package:stunting_app/app/views/menu/community/DetailThread.dart';
 import 'package:stunting_app/app/views/menu/consulatation/DetailConsultation.dart';
 import 'package:stunting_app/app/views/menu/consulatation/ReviewConsultation.dart';
 import 'package:stunting_app/app/views/menu/consulatation/SuccessTransaksi.dart';
+import 'package:stunting_app/app/views/menu/game/GameLevelPage.dart';
+import 'package:stunting_app/app/views/menu/game/GamePlayPage.dart';
+import 'package:stunting_app/app/views/menu/game/GameResult.dart';
 import 'package:stunting_app/app/views/menu/maps/MapsPemetaan.dart';
 import 'package:stunting_app/app/views/menu/profile/DetailProfilePage.dart';
 import 'package:stunting_app/app/views/menu/resep/ResepAllPage.dart';
@@ -147,6 +151,24 @@ class AppPages {
       name: '/detail-thread/:id',
       page: () => const DetailThread(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: "/game-level",
+      page: () => const GameLevelPage(),
+      transition: Transition.fadeIn,
+      binding: GameBindings(),
+    ),
+    GetPage(
+      name: "/game-play",
+      page: () => const GamePlayPage(),
+      transition: Transition.fadeIn,
+      binding: GameBindings(),
+    ),
+    GetPage(
+      name: "/game-result",
+      page: () => const GameResult(),
+      transition: Transition.fadeIn,
+      binding: GameBindings(),
     ),
     GetPage(
       name: "/blank-page",
