@@ -38,6 +38,7 @@ import 'package:stunting_app/app/views/menu/profile/DetailProfilePage.dart';
 import 'package:stunting_app/app/views/menu/resep/ResepAllPage.dart';
 import 'package:stunting_app/app/views/menu/resep/ResepDetailPage.dart';
 import 'package:stunting_app/app/views/menu/setting/PusatBantuanPage.dart';
+import 'package:stunting_app/app/views/menu/tahap-kembang/TahapKembang.dart';
 
 class AppPages {
   static final pages = [
@@ -180,5 +181,11 @@ class AppPages {
       page: () => const PusatBantuanPage(),
       transition: Transition.fadeIn,
     ),
+    GetPage(
+      name: "/tahap-kembang",
+      page: () => const TahapKembang(),
+      binding: IndexMainBinding(),
+      transition: Transition.fadeIn,
+    )
   ];
 }

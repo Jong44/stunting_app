@@ -11,7 +11,7 @@ class HomeEvent extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(
+            const Text(
               "Event Menarik",
               style: TextStyle(
                 fontSize: 16,
@@ -21,7 +21,7 @@ class HomeEvent extends StatelessWidget {
             const Spacer(),
             TextButton(
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 "Lihat Semua",
                 style: TextStyle(
                   fontSize: 12,
@@ -31,19 +31,17 @@ class HomeEvent extends StatelessWidget {
             ),
           ],
         ),
-        Container(
+        SizedBox(
           height: 150,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 5,
+            itemExtent: 250,
             itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.only(right: 10),
-                width: 270,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(10),
-                ),
+              return Image.asset(
+                "assets/images/event.png",
+                fit: BoxFit.cover,
+                width: 250,
               );
             },
           ),

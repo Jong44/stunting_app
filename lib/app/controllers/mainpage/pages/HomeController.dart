@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stunting_app/app/services/ArtikelService.dart';
+import 'package:stunting_app/app/services/CommunityService.dart';
 import 'package:stunting_app/app/services/GrafikAnakService.dart';
 import 'package:stunting_app/app/services/UserService.dart';
 
@@ -9,6 +10,7 @@ class HomeController extends GetxController {
   var dataTinggiBadanPerBulan = [].obs;
   var dataLingkarKepalaPerBulan = [].obs;
   var dataDisplay = [].obs;
+  var dataCommunity = [].obs;
 
   var isLoading = true.obs;
   var dataAnak = [].obs;
@@ -33,6 +35,18 @@ class HomeController extends GetxController {
     getLokasi();
     getDataAnak();
     getArtikel();
+    getCommunity();
+  }
+
+  void getCommunity() async {
+    isLoading.value = true;
+    final response = await CommunityService().getThread();
+    if (response['status']) {
+      final data = response['data'];
+      dataCommunity.value = data;
+      print(data[0]);
+    }
+    isLoading.value = false;
   }
 
   void getLokasi() async {

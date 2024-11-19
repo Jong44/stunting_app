@@ -20,9 +20,9 @@ class HomeMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     List menu = [
       {
-        "icon": GameIcons.love_injection,
-        "title": "Booking Vaksin",
-        "route": "/booking-vaksin",
+        "icon": Carbon.development,
+        "title": "Tahap Kembang",
+        "route": "/tahap-kembang",
       },
       {
         "icon": Ph.chart_line,
@@ -35,9 +35,9 @@ class HomeMenu extends StatelessWidget {
         "route": "/resep",
       },
       {
-        "icon": Carbon.development,
-        "title": "Tahap Kembang",
-        "route": "/blank-page",
+        "icon": GameIcons.love_injection,
+        "title": "Booking Vaksin",
+        "route": "/booking-vaksin",
       },
       {
         "icon": Carbon.game_console,

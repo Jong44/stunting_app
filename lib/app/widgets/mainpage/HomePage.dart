@@ -74,7 +74,9 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 15),
                 const HomeEvent(),
                 const SizedBox(height: 15),
-                const HomeKomunitas(),
+                HomeKomunitas(
+                  controller: controllerHome,
+                ),
                 const SizedBox(height: 15),
                 Obx(() {
                   return HomeArtikel(
