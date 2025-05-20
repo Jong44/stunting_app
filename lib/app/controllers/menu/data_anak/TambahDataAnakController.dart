@@ -16,6 +16,7 @@ class TambahDataAnakController extends GetxController {
   var tanggalLahirValue = "Tanggal".obs;
   var bulanLahirValue = "Bulan".obs;
   var tahunLahirValue = "Tahun".obs;
+  var tanggalCekValue = "Tanggal".obs;
   var bulanCekValue = "Bulan".obs;
   var tahunCekValue = "Tahun".obs;
   var namaBayi = "".obs;
@@ -76,6 +77,7 @@ class TambahDataAnakController extends GetxController {
       date = pickedDate.toLocal().toString().split(' ')[0].split("-");
       tahunCekValue.value = date[0];
       bulanCekValue.value = date[1];
+      tanggalCekValue.value = date[2];
     }
   }
 
@@ -87,6 +89,7 @@ class TambahDataAnakController extends GetxController {
       tanggalLahirValue.value,
       bulanLahirValue.value,
       tahunLahirValue.value,
+      tanggalCekValue.value,
       bulanCekValue.value,
       tahunCekValue.value,
       tinggiBadan.value,

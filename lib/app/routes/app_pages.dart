@@ -183,7 +183,7 @@ class AppPages {
     ),
     GetPage(
       name: "/tahap-kembang",
-      page: () => const TahapKembang(),
+      page: () => TahapKembang(),
       binding: IndexMainBinding(),
       transition: Transition.fadeIn,
     )

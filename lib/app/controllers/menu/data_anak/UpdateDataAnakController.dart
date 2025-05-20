@@ -20,6 +20,7 @@ class UpdateDataAnakController extends GetxController {
   var tanggalLahirValue = "Tanggal".obs;
   var bulanLahirValue = "Bulan".obs;
   var tahunLahirValue = "Tahun".obs;
+  var tanggalCekValue = "Tanggal".obs;
   var bulanCekValue = "Bulan".obs;
   var tahunCekValue = "Tahun".obs;
   var namaBayi = "".obs;
@@ -86,6 +87,7 @@ class UpdateDataAnakController extends GetxController {
       date = pickedDate.toLocal().toString().split(' ')[0].split("-");
       tahunCekValue.value = date[0];
       bulanCekValue.value = date[1];
+      tanggalCekValue.value = date[2];
     }
     getDataPertumbuhanByBulan();
   }
@@ -108,25 +110,14 @@ class UpdateDataAnakController extends GetxController {
     isLoadingCek.value = true;
     final response = await GrafikAnakService().getDataPertumbuhanByBulan(
       idAnak,
+      tanggalCekValue.value,
       bulanCekValue.value,
       tahunCekValue.value,
     );
     if (response['status']) {
-      tinggiBadan.value = response['data']['tinggi_badan'];
-      beratBadan.value = response['data']['berat_badan'];
-      lingkarKepala.value = response['data']['lingkar_kepala'];
-
       tinggiBadanController.value.text = response['data']['tinggi_badan'];
       beratBadanController.value.text = response['data']['berat_badan'];
       lingkarKepalaController.value.text = response['data']['lingkar_kepala'];
-    } else {
-      tinggiBadan.value = "";
-      beratBadan.value = "";
-      lingkarKepala.value = "";
-
-      tinggiBadanController.value.text = "";
-      beratBadanController.value.text = "";
-      lingkarKepalaController.value.text = "";
     }
     isLoadingCek.value = false;
   }
@@ -144,6 +135,7 @@ class UpdateDataAnakController extends GetxController {
     final responseDataPertumbuhan =
         await GrafikAnakService().updateDataPertumbuhanByBulan(
       idAnak,
+      tanggalCekValue.value,
       bulanCekValue.value,
       tahunCekValue.value,
       tinggiBadan.value,

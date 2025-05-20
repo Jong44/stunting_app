@@ -97,7 +97,7 @@ class RegisterDataPage extends StatelessWidget {
                                 children: [
                                   Container(
                                     padding: EdgeInsets.symmetric(vertical: 5),
-                                    width: 50,
+                                    width: 40,
                                     height: 30,
                                     decoration: BoxDecoration(
                                       color: registerController.gender.value ==
@@ -121,6 +121,9 @@ class RegisterDataPage extends StatelessWidget {
                                   ),
                                   Text(
                                     gender[index],
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ],
                               ));

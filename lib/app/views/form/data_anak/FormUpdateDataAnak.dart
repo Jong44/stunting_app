@@ -267,7 +267,7 @@ class FormUpdateDataAnak extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Bulan Cek',
+                                        'Tanggal Cek',
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Colors.grey[600],
@@ -286,7 +286,36 @@ class FormUpdateDataAnak extends StatelessWidget {
                                               width: MediaQuery.of(context)
                                                           .size
                                                           .width *
-                                                      0.43 -
+                                                      0.30 -
+                                                  20,
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 12, horizontal: 20),
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey[200],
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: Obx(
+                                                () => Text(
+                                                  controller
+                                                      .tanggalCekValue.value,
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              controller.pickBulanCek(context);
+                                            },
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.30 -
                                                   20,
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 12, horizontal: 20),
@@ -315,7 +344,7 @@ class FormUpdateDataAnak extends StatelessWidget {
                                               width: MediaQuery.of(context)
                                                           .size
                                                           .width *
-                                                      0.43 -
+                                                      0.30 -
                                                   20,
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 12, horizontal: 20),

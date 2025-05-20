@@ -11,6 +11,7 @@ class GrafikAnakService {
     String tanggalLahir,
     String bulanLahir,
     String tahunLahir,
+    String tanggalCek,
     String bulanCek,
     String tahunCek,
     String tinggiBadan,
@@ -32,6 +33,7 @@ class GrafikAnakService {
           'tahun_lahir': tahunLahir,
           'data_pertumbuhan': [
             {
+              'tanggal_cek': tanggalCek,
               'bulan_cek': bulanCek,
               'tahun_cek': tahunCek,
               'tinggi_badan': tinggiBadan,
@@ -143,7 +145,7 @@ class GrafikAnakService {
   }
 
   Future getDataPertumbuhanByBulan(
-      String id, String bulan, String tahun) async {
+      String id, String tanggal, String bulan, String tahun) async {
     try {
       final user = _auth.currentUser;
       if (user != null) {
@@ -155,14 +157,15 @@ class GrafikAnakService {
             .get();
         if (data.exists) {
           var dataPertumbuhan = data.data()!['data_pertumbuhan'];
-          var dataByBulan = dataPertumbuhan.where((element) {
-            return element['bulan_cek'] == bulan &&
+          var dataByTanggal = dataPertumbuhan.where((element) {
+            return element['tanggal_cek'] == tanggal &&
+                element['bulan_cek'] == bulan &&
                 element['tahun_cek'] == tahun;
           }).toList();
-          if (dataByBulan.isNotEmpty) {
+          if (dataByTanggal.isNotEmpty) {
             return {
               'status': true,
-              'data': dataByBulan[0],
+              'data': dataByTanggal[0],
             };
           } else {
             return {'status': false, 'message': 'Data not found'};
@@ -180,6 +183,7 @@ class GrafikAnakService {
 
   Future updateDataPertumbuhanByBulan(
     String id,
+    String tanggalCek,
     String bulanCek,
     String tahunCek,
     String tinggiBadan,
@@ -198,13 +202,15 @@ class GrafikAnakService {
             .get();
         if (data.exists) {
           var dataPertumbuhan = data.data()!['data_pertumbuhan'];
-          var dataByBulan = dataPertumbuhan.where((element) {
-            return element['bulan_cek'] == bulanCek &&
+          var dataByTanggal = dataPertumbuhan.where((element) {
+            return element['tanggal_cek'] == tanggalCek &&
+                element['bulan_cek'] == bulanCek &&
                 element['tahun_cek'] == tahunCek;
           }).toList();
-          if (dataByBulan.isNotEmpty) {
-            var indexData = dataPertumbuhan.indexOf(dataByBulan[0]);
+          if (dataByTanggal.isNotEmpty) {
+            var indexData = dataPertumbuhan.indexOf(dataByTanggal[0]);
             dataPertumbuhan[indexData] = {
+              'tanggal_cek': tanggalCek,
               'bulan_cek': bulanCek,
               'tahun_cek': tahunCek,
               'tinggi_badan': tinggiBadan,
@@ -232,6 +238,7 @@ class GrafikAnakService {
               'updatedAt': FieldValue.serverTimestamp(),
               'data_pertumbuhan': FieldValue.arrayUnion([
                 {
+                  'tanggal_cek': tanggalCek,
                   'bulan_cek': bulanCek,
                   'tahun_cek': tahunCek,
                   'tinggi_badan': tinggiBadan,

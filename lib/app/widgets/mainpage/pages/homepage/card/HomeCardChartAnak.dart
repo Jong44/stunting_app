@@ -303,10 +303,13 @@ Widget bottomTitleWidgets(double value, TitleMeta meta) {
         textAlign: TextAlign.center,
       );
     }
-
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      child: text,
+      child: Text(
+        '${controller.dataDisplay.value[value.toInt()]['tanggal'].toString()} - ${controller.dataDisplay.value[value.toInt()]['bulan'].toString()}',
+        style: style,
+        textAlign: TextAlign.center,
+      ),
     );
   });
 }

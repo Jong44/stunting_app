@@ -76,15 +76,21 @@ class HomeController extends GetxController {
     dataLingkarKepalaPerBulan.clear();
     dataAnak[indexAnak.value]['data']['data_pertumbuhan'].forEach((element) {
       dataBeratBadanPerBulan.add({
+        'tanggal': element['tanggal_cek'],
         'bulan': int.parse(element['bulan_cek']),
+        'tahun': int.parse(element['tahun_cek']),
         'value': double.parse(element['berat_badan']),
       });
       dataTinggiBadanPerBulan.add({
+        'tanggal': element['tanggal_cek'],
         'bulan': int.parse(element['bulan_cek']),
+        'tahun': int.parse(element['tahun_cek']),
         'value': double.parse(element['tinggi_badan']),
       });
       dataLingkarKepalaPerBulan.add({
+        'tanggal': element['tanggal_cek'],
         'bulan': int.parse(element['bulan_cek']),
+        'tahun': int.parse(element['tahun_cek']),
         'value': double.parse(element['lingkar_kepala']),
       });
     });
